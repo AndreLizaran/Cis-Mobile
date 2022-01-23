@@ -4,13 +4,21 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // Colors
-import { darkBlue, lightBlue } from '../utils/colors';
+import {
+  darkBlue,
+  darkGray,
+  lightBlue,
+  normalBlue,
+  normalGray,
+  normalRed,
+} from '../utils/colors';
 
 // Components
 import { NoDates } from './Dates';
 
 // Styles
 import generalStyles from '../styles/general';
+import SimpleButton from '../components/SimpleButton';
 
 interface Props extends NativeStackScreenProps<any, any> {}
 
@@ -72,27 +80,14 @@ function EventsContainer() {
   return (
     <View style={{ borderRadius: 5, marginBottom: 20 }}>
       <View
-        style={{
-          paddingHorizontal: 20,
-          paddingVertical: 15,
-          backgroundColor: '#191919',
-          borderTopLeftRadius: 5,
-          borderTopRightRadius: 5,
-        }}
+        style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}
       >
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
           Eventos enlistados
         </Text>
       </View>
-      <View
-        style={{
-          padding: 20,
-          backgroundColor: '#DDDDDD',
-          borderBottomLeftRadius: 5,
-          borderBottomRightRadius: 5,
-        }}
-      >
-        <NoDates color='#191919' />
+      <View style={generalStyles.generalBody}>
+        <NoDates color={darkGray} />
       </View>
     </View>
   );
@@ -102,29 +97,13 @@ function FooterButtons({ navigation }: Props) {
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
       <TouchableOpacity
-        style={{
-          paddingVertical: 15,
-          paddingHorizontal: 20,
-          backgroundColor: '#DD4A48',
-          borderRadius: 5,
-        }}
         onPress={() => navigation.pop()}
+        style={{ marginBottom: 20 }}
       >
-        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
-          Cerrar sesión
-        </Text>
+        <SimpleButton bgColor={normalRed} text='Cerrar sesión' />
       </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          paddingVertical: 15,
-          paddingHorizontal: 20,
-          backgroundColor: '#1572A1',
-          borderRadius: 5,
-        }}
-      >
-        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>
-          Cambiar usuario
-        </Text>
+      <TouchableOpacity style={{ marginBottom: 20 }}>
+        <SimpleButton bgColor={normalBlue} text='Cambiar usuario' />
       </TouchableOpacity>
     </View>
   );

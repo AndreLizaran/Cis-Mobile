@@ -1,6 +1,9 @@
 // Modules
 import { StyleSheet } from 'react-native';
 
+// Colors
+import { normalGray } from '../utils/colors';
+
 const generalStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,6 +27,23 @@ const generalStyles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     fontSize: 16,
+  },
+  generalHeader: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+  },
+  generalHeaderTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  generalBody: {
+    padding: 20,
+    backgroundColor: normalGray,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
   },
 });
 

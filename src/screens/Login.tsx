@@ -6,33 +6,23 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 // Styles
 import generalStyles from '../styles/general';
 
+// Colors
+import { darkGray, normalBlue, normalGray } from '../utils/colors';
+
+// Components
+import SimpleButton from '../components/SimpleButton';
+
 interface Props extends NativeStackScreenProps<any, any> {}
 
 export default function Login({ navigation }: Props) {
   return (
     <View style={generalStyles.container}>
       <View
-        style={{
-          paddingHorizontal: 20,
-          paddingVertical: 15,
-          backgroundColor: '#191919',
-          borderTopLeftRadius: 5,
-          borderTopRightRadius: 5,
-        }}
+        style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}
       >
-        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
-          Inicio de sesión
-        </Text>
+        <Text style={generalStyles.generalHeaderTitle}>Inicio de sesión</Text>
       </View>
-      <View
-        style={{
-          padding: 20,
-          backgroundColor: '#DDDDDD',
-          borderBottomLeftRadius: 5,
-          borderBottomRightRadius: 5,
-          marginBottom: 20,
-        }}
-      >
+      <View style={{ ...generalStyles.generalBody, marginBottom: 20 }}>
         {/* @ts-ignore */}
         <LoginForm navigation={navigation} />
       </View>
@@ -52,7 +42,7 @@ export default function Login({ navigation }: Props) {
               fontSize: 16,
               fontWeight: 'bold',
               textDecorationLine: 'underline',
-              color: '#1572A1',
+              color: normalBlue,
             }}
           >
             Regístrate
@@ -71,24 +61,10 @@ function LoginForm({ navigation }: Props) {
       <Text style={generalStyles.generalLabel}>Contraseña</Text>
       <TextInput style={generalStyles.generalTextInput} />
       <TouchableOpacity
-        style={{
-          paddingVertical: 15,
-          paddingHorizontal: 20,
-          backgroundColor: '#1572A1',
-          borderRadius: 5,
-          alignSelf: 'flex-start',
-        }}
         onPress={() => navigation.navigate('private')}
+        style={{ alignSelf: 'flex-start' }}
       >
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: 'bold',
-            color: 'white',
-          }}
-        >
-          Iniciar sesión
-        </Text>
+        <SimpleButton bgColor={normalBlue} text='Iniciar sesión' />
       </TouchableOpacity>
     </>
   );

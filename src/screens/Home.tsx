@@ -5,6 +5,9 @@ import { Image, ScrollView, Text, View } from 'react-native';
 // Styles
 import generalStyles from '../styles/general';
 
+// Colors
+import { normalGray, normalGreen } from '../utils/colors';
+
 export default function Home() {
   return (
     <ScrollView style={generalStyles.container}>
@@ -19,12 +22,12 @@ export default function Home() {
           marginBottom: 20,
         }}
       />
-      <View style={{ backgroundColor: '#D3DEDC', borderRadius: 5 }}>
+      <View style={{ borderRadius: 5 }}>
         <View
           style={{
             padding: 20,
             paddingBottom: 15,
-            backgroundColor: '#557C55',
+            backgroundColor: normalGreen,
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
           }}
@@ -40,7 +43,9 @@ export default function Home() {
             Anim fugiat labore adipisicing aute magna officia veniam.
           </Text>
         </View>
-        <Text style={{ fontSize: 16, padding: 20 }}>
+        <Text
+          style={{ fontSize: 16, padding: 20, backgroundColor: normalGray }}
+        >
           Duis elit veniam aliquip mollit veniam ullamco veniam Lorem anim.
           Dolor nulla sint non dolore ullamco laboris ut in veniam id eiusmod
           aute est elit. Et quis enim qui qui ipsum quis. Eiusmod ullamco Lorem

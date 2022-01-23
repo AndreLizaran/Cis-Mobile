@@ -6,21 +6,29 @@ import { Ionicons } from '@expo/vector-icons';
 // Styles
 import generalStyles from '../styles/general';
 
+// Colors
+import {
+  normalBlue,
+  normalGray,
+  normalGreen,
+  normalRed,
+} from '../utils/colors';
+
 export default function Dates() {
   return (
     <ScrollView style={generalStyles.container}>
       <DatesContainer
-        headerColor='#DD4A48'
+        headerColor={normalRed}
         title='Talleres'
         icon='pencil-sharp'
       />
       <DatesContainer
-        headerColor='#1572A1'
+        headerColor={normalBlue}
         title='Conferencias'
         icon='megaphone'
       />
       <DatesContainer
-        headerColor='#3E7C17'
+        headerColor={normalGreen}
         title='Cursos'
         icon='people-circle'
       />
@@ -58,7 +66,7 @@ function DatesContainer({ headerColor, title, icon }: DatesContainerProps) {
       <View
         style={{
           padding: 20,
-          backgroundColor: '#DDDDDD',
+          backgroundColor: normalGray,
           borderBottomLeftRadius: 5,
           borderBottomRightRadius: 5,
         }}

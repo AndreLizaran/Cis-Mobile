@@ -18,34 +18,43 @@ export default function Home() {
         style={{
           width: '100%',
           height: 180,
-          borderRadius: 5,
-          marginBottom: 20,
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
         }}
       />
-      <View style={{ borderRadius: 5 }}>
-        <View
+      <View
+        style={{
+          ...generalStyles.generalBody,
+          marginBottom: 20,
+          paddingVertical: 15,
+        }}
+      >
+        <Text style={{ fontWeight: 'bold' }}>
+          Duis velit veniam irure aliqua.
+        </Text>
+      </View>
+      <View
+        style={{
+          padding: 20,
+          paddingBottom: 15,
+          backgroundColor: normalGreen,
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
+        }}
+      >
+        <Text
           style={{
-            padding: 20,
-            paddingBottom: 15,
-            backgroundColor: normalGreen,
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginBottom: 5,
+            color: 'white',
           }}
         >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              marginBottom: 5,
-              color: 'white',
-            }}
-          >
-            Anim fugiat labore adipisicing aute magna officia veniam.
-          </Text>
-        </View>
-        <Text
-          style={{ fontSize: 16, padding: 20, backgroundColor: normalGray }}
-        >
+          Anim fugiat labore adipisicing aute magna officia veniam.
+        </Text>
+      </View>
+      <View style={generalStyles.generalBody}>
+        <Text>
           Duis elit veniam aliquip mollit veniam ullamco veniam Lorem anim.
           Dolor nulla sint non dolore ullamco laboris ut in veniam id eiusmod
           aute est elit. Et quis enim qui qui ipsum quis. Eiusmod ullamco Lorem

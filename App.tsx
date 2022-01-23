@@ -4,7 +4,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 
 // Navigator
-import DrawerNavigator from './src/navigation/DrawerNavigator';
+import StackNavigator from './src/navigation/StackNavigator';
 
 const MyTheme = {
   dark: false,
@@ -21,7 +21,7 @@ const MyTheme = {
 export default function App() {
   return (
     <NavigationContainer theme={MyTheme}>
-      <DrawerNavigator />
+      <StackNavigator />
     </NavigationContainer>
   );
 }

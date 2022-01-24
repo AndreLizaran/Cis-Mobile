@@ -9,7 +9,6 @@ import {
   darkGray,
   lightBlue,
   normalBlue,
-  normalGray,
   normalRed,
 } from '../utils/colors';
 
@@ -95,14 +94,14 @@ function EventsContainer() {
 
 function FooterButtons({ navigation }: Props) {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+    <View style={{ flexDirection: 'row' }}>
       <TouchableOpacity
         onPress={() => navigation.pop()}
-        style={{ marginBottom: 20 }}
+        style={{ marginRight: 20 }}
       >
         <SimpleButton bgColor={normalRed} text='Cerrar sesión' />
       </TouchableOpacity>
-      <TouchableOpacity style={{ marginBottom: 20 }}>
+      <TouchableOpacity>
         <SimpleButton bgColor={normalBlue} text='Cambiar usuario' />
       </TouchableOpacity>
     </View>

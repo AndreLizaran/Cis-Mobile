@@ -1,0 +1,90 @@
+{
+  "talleres": [
+    {
+      "id":1,
+      "title": "HTML y CSS",
+      "responsableName": "George Bluth",
+      "responsableImage": "https://reqres.in/img/faces/5-image.jpg",
+      "day": "27/01/2022",
+      "hour": "13:00",
+      "length": 2
+    },
+    {
+      "id":2,
+      "title": "Java",
+      "responsableName": "Janet Weaver",
+      "responsableImage": "https://reqres.in/img/faces/2-image.jpg",
+      "day": "28/01/2022",
+      "hour": "13:00",
+      "length": 1
+    },
+    {
+      "id":3,
+      "title": "Typescript",
+      "responsableName": "Emma Wong",
+      "responsableImage": "https://reqres.in/img/faces/3-image.jpg",
+      "day": "29/01/2022",
+      "hour": "13:00",
+      "length": 1
+    }
+  ],
+  "cursos": [
+    
+    {
+      "id":1,
+      "title": "Java",
+      "responsableName": "Janet Weaver",
+      "responsableImage": "https://reqres.in/img/faces/2-image.jpg",
+      "day": "28/01/2022",
+      "hour": "13:00",
+      "length": 1
+    },
+    {
+      "id":2,
+      "title": "HTML y CSS",
+      "responsableName": "George Bluth",
+      "responsableImage": "https://reqres.in/img/faces/5-image.jpg",
+      "day": "27/01/2022",
+      "hour": "13:00",
+      "length": 2
+    },
+    {
+      "id":3,
+      "title": "Typescript",
+      "responsableName": "Emma Wong",
+      "responsableImage": "https://reqres.in/img/faces/3-image.jpg",
+      "day": "29/01/2022",
+      "hour": "13:00",
+      "length": 1
+    }
+  ],
+  "conferencias": [
+    {
+      "id":1,
+      "title": "Typescript",
+      "responsableName": "Emma Wong",
+      "responsableImage": "https://reqres.in/img/faces/3-image.jpg",
+      "day": "29/01/2022",
+      "hour": "13:00",
+      "length": 1
+    },
+    {
+      "id":2,
+      "title": "HTML y CSS",
+      "responsableName": "George Bluth",
+      "responsableImage": "https://reqres.in/img/faces/5-image.jpg",
+      "day": "27/01/2022",
+      "hour": "13:00",
+      "length": 2
+    },
+    {
+      "id":3,
+      "title": "Java",
+      "responsableName": "Janet Weaver",
+      "responsableImage": "https://reqres.in/img/faces/2-image.jpg",
+      "day": "28/01/2022",
+      "hour": "13:00",
+      "length": 1
+    }
+  ]
+}

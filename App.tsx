@@ -1,7 +1,11 @@
 // Modules
 import React from 'react';
+import { LogBox } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+LogBox.ignoreAllLogs();
 
 // Navigator
 import StackNavigator from './src/navigation/StackNavigator';
@@ -18,10 +22,14 @@ const MyTheme = {
   },
 };
 
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <NavigationContainer theme={MyTheme}>
-      <StackNavigator />
+      <QueryClientProvider client={queryClient}>
+        <StackNavigator />
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }

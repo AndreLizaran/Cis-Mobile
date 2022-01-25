@@ -18,7 +18,7 @@ const MyTheme = {
     card: '#557C55',
     text: '#FFF',
     border: 'rgb(199, 199, 204)',
-    notification: 'rgb(255, 69, 58)',
+    notification: '#FFF',
   },
 };
 

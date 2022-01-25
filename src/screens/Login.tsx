@@ -17,9 +17,7 @@ interface Props extends NativeStackScreenProps<any, any> {}
 export default function Login({ navigation }: Props) {
   return (
     <View style={generalStyles.container}>
-      <View
-        style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}
-      >
+      <View style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}>
         <Text style={generalStyles.generalHeaderTitle}>Inicio de sesión</Text>
       </View>
       <View style={{ ...generalStyles.generalBody, marginBottom: 20 }}>

@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const axiosInstanceWithAuth = axios.create({
-  baseURL: 'http://10.0.2.2:4000/',
+  baseURL: 'https://cis-mobile-backend-dummy.herokuapp.com/',
 });

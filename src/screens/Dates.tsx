@@ -9,13 +9,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import generalStyles from '../styles/general';
 
 // Colors
-import {
-  darkGray,
-  normalBlue,
-  normalGray,
-  normalGreen,
-  normalRed,
-} from '../utils/colors';
+import { normalBlue, normalGreen, normalRed } from '../utils/colors';
 
 // Hooks
 import {
@@ -26,7 +20,6 @@ import {
 
 // Types
 import { DateType } from '../endpoints/general';
-import SimpleButton from '../components/SimpleButton';
 
 export default function Dates() {
   //
@@ -34,18 +27,21 @@ export default function Dates() {
     isLoading: isLoadingTalleres,
     isFetching: isFetchingTalleres,
     data: dataTalleres,
+    isSuccess: isSuccessTalleres,
   } = useGetTalleres();
 
   const {
     isLoading: isLoadingConferencias,
     isFetching: isFetchingConferencias,
     data: dataConferencias,
+    isSuccess: isSuccessConferencias,
   } = useGetConferencias();
 
   const {
     isLoading: isLoadingCursos,
     isFetching: isFetchingCursos,
     data: dataCursos,
+    isSuccess: isSuccessCursos,
   } = useGetCursos();
 
   return (
@@ -56,7 +52,7 @@ export default function Dates() {
         icon='pencil-sharp'
         isLoading={isLoadingTalleres}
         isFetching={isFetchingTalleres}
-        data={dataTalleres?.data}
+        data={dataTalleres?.data.talleres}
       />
       <DatesContainer
         headerColor={normalBlue}
@@ -64,7 +60,7 @@ export default function Dates() {
         icon='megaphone'
         isLoading={isLoadingConferencias}
         isFetching={isFetchingConferencias}
-        data={dataTalleres?.data}
+        data={dataConferencias?.data.conferencias}
       />
       <DatesContainer
         headerColor={normalGreen}
@@ -72,7 +68,7 @@ export default function Dates() {
         icon='people-circle'
         isLoading={isLoadingCursos}
         isFetching={isFetchingCursos}
-        data={dataTalleres?.data}
+        data={dataCursos?.data.cursos}
       />
     </ScrollView>
   );
@@ -181,13 +177,22 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
     <ScrollView style={{ maxHeight: 200 }} nestedScrollEnabled={true}>
       {data.map(
         (
-          { id, title, responsableImage, responsableName, length, day, hour },
+          {
+            id,
+            title,
+            responsableImage,
+            responsableName,
+            textColor,
+            length,
+            day,
+            hour,
+            bgImage,
+          },
           index
         ) => (
           <View
             style={{
               alignItems: 'center',
-              padding: 20,
               backgroundColor: 'white',
               borderRadius: 5,
               marginBottom: data.length === index + 1 ? 0 : 20,
@@ -195,77 +200,116 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
             key={id}
           >
             <Image
-              source={{ uri: responsableImage }}
-              style={{ width: 80, height: 80, borderRadius: 100, marginBottom: 10 }}
-            />
-            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{title}</Text>
-            <Text style={{ marginBottom: 10 }}>{responsableName}</Text>
-            <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-              <View
-                style={{
-                  borderRadius: 5,
-                  borderWidth: 2,
-                  borderColor: color,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  marginRight: 5,
-                }}
-              >
-                <FontAwesome5 name='calendar-alt' size={20} color={color} />
-                <Text style={{ fontWeight: 'bold', color, marginLeft: 10 }}>
-                  {day}
-                </Text>
-              </View>
-              <View
-                style={{
-                  borderRadius: 5,
-                  borderWidth: 2,
-                  borderColor: color,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  marginLeft: 5,
-                }}
-              >
-                <AntDesign name='clockcircle' size={20} color={color} />
-                <Text style={{ fontWeight: 'bold', color, marginLeft: 10 }}>
-                  {hour}
-                </Text>
-              </View>
-            </View>
-            <View>
-              <View
-                style={{
-                  borderRadius: 5,
-                  borderWidth: 2,
-                  borderColor: color,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  marginRight: 5,
-                }}
-              >
-                <Ionicons name='timer-sharp' size={20} color={color} />
-                <Text style={{ fontWeight: 'bold', color, marginLeft: 10 }}>
-                  {length} horas
-                </Text>
-              </View>
-            </View>
-            <TouchableOpacity
+              source={{
+                uri: bgImage,
+              }}
               style={{
-                paddingVertical: 10,
-                paddingHorizontal: 10,
-                borderRadius: 5,
-                backgroundColor: color,
-                marginTop: 10,
+                zIndex: 1,
+                width: '100%',
+                height: 150,
+                position: 'absolute',
+                borderTopLeftRadius: 5,
+                borderTopRightRadius: 5,
+              }}
+            />
+            <Image
+              source={{ uri: responsableImage }}
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: 100,
+                marginVertical: 10,
+                borderWidth: 2,
+                borderColor: color,
+                zIndex: 2,
+              }}
+            />
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+                zIndex: 2,
+                color: textColor,
               }}
             >
-              <Text style={{ fontWeight: 'bold', color: 'white' }}>Registrarse</Text>
-            </TouchableOpacity>
+              {title}
+            </Text>
+            <Text style={{ marginBottom: 10, zIndex: 2, color: textColor }}>
+              {responsableName}
+            </Text>
+
+            <View
+              style={{ padding: 20, backgroundColor: 'white', alignItems: 'center' }}
+            >
+              <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                <View
+                  style={{
+                    borderRadius: 5,
+                    borderWidth: 2,
+                    borderColor: color,
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    marginRight: 5,
+                  }}
+                >
+                  <FontAwesome5 name='calendar-alt' size={20} color={color} />
+                  <Text style={{ fontWeight: 'bold', color, marginLeft: 10 }}>
+                    {day}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    borderRadius: 5,
+                    borderWidth: 2,
+                    borderColor: color,
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    marginLeft: 5,
+                  }}
+                >
+                  <AntDesign name='clockcircle' size={20} color={color} />
+                  <Text style={{ fontWeight: 'bold', color, marginLeft: 10 }}>
+                    {hour}
+                  </Text>
+                </View>
+              </View>
+              <View>
+                <View
+                  style={{
+                    borderRadius: 5,
+                    borderWidth: 2,
+                    borderColor: color,
+                    paddingHorizontal: 10,
+                    paddingVertical: 5,
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    marginRight: 5,
+                  }}
+                >
+                  <Ionicons name='timer-sharp' size={20} color={color} />
+                  <Text style={{ fontWeight: 'bold', color, marginLeft: 10 }}>
+                    {length} horas
+                  </Text>
+                </View>
+              </View>
+              <TouchableOpacity
+                style={{
+                  paddingVertical: 10,
+                  paddingHorizontal: 10,
+                  borderRadius: 5,
+                  backgroundColor: color,
+                  marginTop: 10,
+                }}
+              >
+                <Text style={{ fontWeight: 'bold', color: 'white' }}>
+                  Registrarse
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )
       )}

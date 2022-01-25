@@ -13,21 +13,9 @@ export default function DrawerNavigator() {
   //
   return (
     <Drawer.Navigator screenOptions={{ headerTintColor: 'white' }}>
-      <Drawer.Screen
-        name='home'
-        options={{ title: 'Inicio' }}
-        component={Home}
-      />
-      <Drawer.Screen
-        name='dates'
-        options={{ title: 'Fechas' }}
-        component={Dates}
-      />
-      <Drawer.Screen
-        name='user'
-        options={{ title: 'Usuario' }}
-        component={User}
-      />
+      <Drawer.Screen name='home' options={{ title: 'Inicio' }} component={Home} />
+      <Drawer.Screen name='dates' options={{ title: 'Fechas' }} component={Dates} />
+      <Drawer.Screen name='user' options={{ title: 'Usuario' }} component={User} />
     </Drawer.Navigator>
   );
 }

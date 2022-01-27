@@ -54,6 +54,15 @@ export type ConferenciasDateType = {
   }[];
 };
 
+export type HomeHeadersType = {
+  headers: {
+    image: string;
+    shortDescription: string;
+    description: string;
+    shortHeaderDescriptionColor: string;
+  }[];
+};
+
 export function getTalleresRequest() {
   return axiosInstanceWithAuth.get<TalleresDateType>('/talleres');
 }
@@ -62,4 +71,8 @@ export function getCursosRequest() {
 }
 export function getConferenciasRequest() {
   return axiosInstanceWithAuth.get<ConferenciasDateType>('/conferencias');
+}
+
+export function getHomeHeadersRequest() {
+  return axiosInstanceWithAuth.get<HomeHeadersType[]>('/home-headers');
 }

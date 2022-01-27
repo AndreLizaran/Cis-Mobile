@@ -3,7 +3,14 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 // Styles
 import generalStyles from '../styles/general';
@@ -160,9 +167,7 @@ export function LoadingData({ color }: LoadingDataProps) {
         borderColor: color,
       }}
     >
-      <Text style={{ fontSize: 16, color, fontWeight: 'bold', textAlign: 'center' }}>
-        Cargando información
-      </Text>
+      <ActivityIndicator color={color} />
     </View>
   );
 }

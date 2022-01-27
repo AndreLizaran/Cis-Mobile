@@ -24,9 +24,7 @@ interface Props extends NativeStackScreenProps<any, any> {}
 export default function User({ navigation }: Props) {
   return (
     <View style={generalStyles.container}>
-      <View
-        style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}
-      >
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
         <FirstLetterBox letter='A' />
         <UserInformation />
       </View>
@@ -41,14 +39,14 @@ type FirstLetterBoxProps = {
   letter: string;
 };
 
-function FirstLetterBox({ letter }: FirstLetterBoxProps) {
+export function FirstLetterBox({ letter }: FirstLetterBoxProps) {
   return (
     <View
       style={{
         borderRadius: 5,
         backgroundColor: lightBlue,
-        height: 80,
-        width: 80,
+        height: 60,
+        width: 60,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 20,
@@ -78,9 +76,7 @@ function UserInformation() {
 function EventsContainer() {
   return (
     <View style={{ borderRadius: 5, marginBottom: 20 }}>
-      <View
-        style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}
-      >
+      <View style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}>
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
           Eventos enlistados
         </Text>
@@ -95,10 +91,7 @@ function EventsContainer() {
 function FooterButtons({ navigation }: Props) {
   return (
     <View style={{ flexDirection: 'row' }}>
-      <TouchableOpacity
-        onPress={() => navigation.pop()}
-        style={{ marginRight: 20 }}
-      >
+      <TouchableOpacity onPress={() => navigation.pop()} style={{ marginRight: 20 }}>
         <SimpleButton bgColor={normalRed} text='Cerrar sesión' />
       </TouchableOpacity>
       <TouchableOpacity>

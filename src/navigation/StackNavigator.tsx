@@ -23,7 +23,7 @@ export default function StackNavigator() {
       />
       <Stack.Screen
         name='private'
-        options={{ title: 'Home', headerShown: false }}
+        options={{ title: 'Home', headerShown: false, gestureEnabled: false }}
         component={DrawerNavigator}
       />
     </Stack.Navigator>

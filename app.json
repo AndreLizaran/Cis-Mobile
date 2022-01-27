@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/itver-logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.andreuwuuwu.cismobile"
     },
     "web": {
       "favicon": "./assets/itver-logo.png"

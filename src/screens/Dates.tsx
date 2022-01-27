@@ -52,7 +52,7 @@ export default function Dates() {
   } = useGetCursos();
 
   return (
-    <ScrollView style={generalStyles.container}>
+    <ScrollView style={{ ...generalStyles.container, marginBottom: 20 }}>
       <DatesContainer
         headerColor={normalRed}
         title='Talleres'

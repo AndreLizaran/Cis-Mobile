@@ -61,7 +61,7 @@ type DrawerListProps = {
 
 function DrawerList({ navigation, index }: DrawerListProps) {
   return (
-    <View style={{ padding: 10, top: -115 }}>
+    <View style={{ padding: 10, top: -120 }}>
       {routes.map(({ name, route }, indexMap) => (
         <DrawerItem
           name={name}

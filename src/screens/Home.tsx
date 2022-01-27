@@ -57,6 +57,35 @@ export default function Home() {
             Anim fugiat labore adipisicing aute magna officia veniam.
           </Text>
         </View>
+        <View style={{ ...generalStyles.generalBody, marginBottom: 20 }}>
+          <Text>
+            Duis elit veniam aliquip mollit veniam ullamco veniam Lorem anim. Dolor
+            nulla sint non dolore ullamco laboris ut in veniam id eiusmod aute est
+            elit. Et quis enim qui qui ipsum quis. Eiusmod ullamco Lorem ullamco do
+            laboris proident veniam magna amet exercitation consequat incididunt
+            consequat.
+          </Text>
+        </View>
+        <View
+          style={{
+            padding: 20,
+            paddingBottom: 15,
+            backgroundColor: normalGreen,
+            borderTopLeftRadius: 5,
+            borderTopRightRadius: 5,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: 'bold',
+              marginBottom: 5,
+              color: 'white',
+            }}
+          >
+            Anim fugiat labore adipisicing aute magna officia veniam.
+          </Text>
+        </View>
         <View style={generalStyles.generalBody}>
           <Text>
             Duis elit veniam aliquip mollit veniam ullamco veniam Lorem anim. Dolor

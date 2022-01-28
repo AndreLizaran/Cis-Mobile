@@ -1,10 +1,11 @@
 // Modules
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import {
   ActivityIndicator,
+  Animated,
   Image,
   ScrollView,
   Text,
@@ -12,11 +13,14 @@ import {
   View,
 } from 'react-native';
 
+// Hooks
+import useAnimation from '../hooks/useAnimation';
+
 // Styles
 import generalStyles from '../styles/general';
 
 // Colors
-import { normalBlue, normalGreen, normalRed } from '../utils/colors';
+import { darkGray, normalBlue, normalGreen, normalRed } from '../utils/colors';
 
 // Hooks
 import {
@@ -27,8 +31,10 @@ import {
 
 // Types
 import { DateType } from '../endpoints/general';
+import SimpleButton from '../components/SimpleButton';
+import { Props } from './Login';
 
-export default function Dates() {
+export default function Dates({ navigation }: Props) {
   //
   const {
     isLoading: isLoadingTalleres,
@@ -52,32 +58,40 @@ export default function Dates() {
   } = useGetCursos();
 
   return (
-    <ScrollView style={{ ...generalStyles.container, marginBottom: 20 }}>
-      <DatesContainer
-        headerColor={normalRed}
-        title='Talleres'
-        icon='pencil-sharp'
-        isLoading={isLoadingTalleres}
-        isFetching={isFetchingTalleres}
-        data={dataTalleres?.data.talleres}
-      />
-      <DatesContainer
-        headerColor={normalBlue}
-        title='Conferencias'
-        icon='megaphone'
-        isLoading={isLoadingConferencias}
-        isFetching={isFetchingConferencias}
-        data={dataConferencias?.data.conferencias}
-      />
-      <DatesContainer
-        headerColor={normalGreen}
-        title='Cursos'
-        icon='people-circle'
-        isLoading={isLoadingCursos}
-        isFetching={isFetchingCursos}
-        data={dataCursos?.data.cursos}
-      />
-    </ScrollView>
+    <>
+      <ScrollView style={{ ...generalStyles.container, marginBottom: 20 }}>
+        <TouchableOpacity
+          style={{ marginBottom: 20 }}
+          onPress={() => navigation.navigate('personal-events')}
+        >
+          <SimpleButton text='Ver tus eventos' bgColor={darkGray} />
+        </TouchableOpacity>
+        <DatesContainer
+          headerColor={normalRed}
+          title='Talleres'
+          icon='pencil-sharp'
+          isLoading={isLoadingTalleres}
+          isFetching={isFetchingTalleres}
+          data={dataTalleres?.data.talleres}
+        />
+        <DatesContainer
+          headerColor={normalBlue}
+          title='Conferencias'
+          icon='megaphone'
+          isLoading={isLoadingConferencias}
+          isFetching={isFetchingConferencias}
+          data={dataConferencias?.data.conferencias}
+        />
+        <DatesContainer
+          headerColor={normalGreen}
+          title='Cursos'
+          icon='people-circle'
+          isLoading={isLoadingCursos}
+          isFetching={isFetchingCursos}
+          data={dataCursos?.data.cursos}
+        />
+      </ScrollView>
+    </>
   );
 }
 
@@ -178,8 +192,20 @@ type ListDatesInformationProps = {
 };
 
 export function ListDatesInformation({ data, color }: ListDatesInformationProps) {
+  //
+  const opacity = useRef(new Animated.Value(0.4)).current;
+
+  const { fadeIn } = useAnimation(opacity);
+
+  useEffect(() => {
+    fadeIn();
+  }, []);
+
   return (
-    <ScrollView style={{ maxHeight: 200 }} nestedScrollEnabled={true}>
+    <Animated.ScrollView
+      style={{ maxHeight: 200, opacity }}
+      nestedScrollEnabled={true}
+    >
       {data.map(
         (
           {
@@ -318,7 +344,7 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
           </View>
         )
       )}
-    </ScrollView>
+    </Animated.ScrollView>
   );
 }
 

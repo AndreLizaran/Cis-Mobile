@@ -12,7 +12,7 @@ import { darkGray, normalBlue, normalGray } from '../utils/colors';
 // Components
 import SimpleButton from '../components/SimpleButton';
 
-interface Props extends NativeStackScreenProps<any, any> {}
+export interface Props extends NativeStackScreenProps<any, any> {}
 
 export default function Login({ navigation }: Props) {
   return (

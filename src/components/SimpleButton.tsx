@@ -20,6 +20,7 @@ export default function SimpleButton({ bgColor, text }: Props) {
           fontSize: 16,
           fontWeight: 'bold',
           color: 'white',
+          textAlign: 'center',
         }}
       >
         {text}

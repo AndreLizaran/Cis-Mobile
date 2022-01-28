@@ -2,6 +2,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 // Colors
 import {
@@ -73,13 +74,22 @@ function UserInformation() {
   );
 }
 
-function EventsContainer() {
+export function EventsContainer() {
   return (
     <View style={{ borderRadius: 5, marginBottom: 20 }}>
-      <View style={{ ...generalStyles.generalHeader, backgroundColor: darkGray }}>
+      <View
+        style={{
+          ...generalStyles.generalHeader,
+          backgroundColor: darkGray,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexDirection: 'row',
+        }}
+      >
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
           Eventos enlistados
         </Text>
+        <FontAwesome5 name='calendar-alt' size={24} color='white' />
       </View>
       <View style={generalStyles.generalBody}>
         <NoDates color={darkGray} />

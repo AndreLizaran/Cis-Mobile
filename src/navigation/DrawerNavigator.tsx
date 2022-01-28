@@ -5,7 +5,6 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import { StatusBar } from 'react-native';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 
@@ -16,8 +15,11 @@ import Dates from '../screens/Dates';
 
 // Colors
 import { normalGreen } from '../utils/colors';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import PersonalEvents from '../screens/PersonalEvents';
 
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function DrawerNavigator() {
   return (
@@ -28,6 +30,11 @@ export default function DrawerNavigator() {
       <Drawer.Screen name='home' options={{ title: 'Inicio' }} component={Home} />
       <Drawer.Screen name='dates' options={{ title: 'Fechas' }} component={Dates} />
       <Drawer.Screen name='user' options={{ title: 'Usuario' }} component={User} />
+      <Drawer.Screen
+        name='personal-events'
+        options={{ title: 'Eventos personales' }}
+        component={PersonalEvents}
+      />
     </Drawer.Navigator>
   );
 }
@@ -112,5 +119,10 @@ const routes = [
     id: 2,
     name: 'Usuario',
     route: 'user',
+  },
+  {
+    id: 3,
+    name: 'Eventos personales',
+    route: 'personal-events',
   },
 ];

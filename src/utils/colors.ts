@@ -9,7 +9,11 @@ export const normalGray = '#DDD';
 export const darkGray = '#212121';
 
 // Green
+export const green200 = '#2EB086';
 export const normalGreen = '#557C55';
+
+// Orange
+export const orange200 = '#F47340';
 
 // Red
 export const normalRed = '#DD4A48';

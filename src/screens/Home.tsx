@@ -1,143 +1,76 @@
 // Modules
-import React from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Carousel from 'react-native-snap-carousel';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Dimensions, ScrollView, View } from 'react-native';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+
+// Components
+import H2 from '../components/H2';
+import HeaderImage from '../components/HeaderImage';
 
 // Data
 import { headersHome } from '../dummyData';
 
 // Styles
-import generalStyles from '../styles/general';
-
-// Colors
-import { normalGreen } from '../utils/colors';
+import { darkGray, lightGray } from '../utils/colors';
+import { useGetTalleres } from '../hooks/useGetDates';
 
 const { width } = Dimensions.get('window');
 
 export default function Home() {
   return (
     <ScrollView style={{ paddingTop: 20 }}>
-      <Carousel
-        data={headersHome}
-        renderItem={(data) => (
-          <CardImage
-            id={data.item.id}
-            image={data.item.image}
-            shortDescription={data.item.shortDescription}
-          />
-        )}
-        sliderWidth={width}
-        itemWidth={width - 40}
-      />
-      <View style={{ padding: 20, paddingTop: 0 }}>
-        <View
-          style={{
-            padding: 20,
-            paddingBottom: 15,
-            backgroundColor: normalGreen,
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              marginBottom: 5,
-              color: 'white',
-            }}
-          >
-            Anim fugiat labore adipisicing aute magna officia veniam.
-          </Text>
-        </View>
-        <View style={{ ...generalStyles.generalBody, marginBottom: 20 }}>
-          <Text>
-            Duis elit veniam aliquip mollit veniam ullamco veniam Lorem anim. Dolor
-            nulla sint non dolore ullamco laboris ut in veniam id eiusmod aute est
-            elit. Et quis enim qui qui ipsum quis. Eiusmod ullamco Lorem ullamco do
-            laboris proident veniam magna amet exercitation consequat incididunt
-            consequat.
-          </Text>
-        </View>
-        <View
-          style={{
-            padding: 20,
-            paddingBottom: 15,
-            backgroundColor: normalGreen,
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              marginBottom: 5,
-              color: 'white',
-            }}
-          >
-            Anim fugiat labore adipisicing aute magna officia veniam.
-          </Text>
-        </View>
-        <View style={generalStyles.generalBody}>
-          <Text>
-            Duis elit veniam aliquip mollit veniam ullamco veniam Lorem anim. Dolor
-            nulla sint non dolore ullamco laboris ut in veniam id eiusmod aute est
-            elit. Et quis enim qui qui ipsum quis. Eiusmod ullamco Lorem ullamco do
-            laboris proident veniam magna amet exercitation consequat incididunt
-            consequat.
-          </Text>
-        </View>
+      <View style={{ paddingHorizontal: 20 }}>
+        <H2 text='Artículos recientes' />
+      </View>
+      <ArticlesCarousel />
+      <View style={{ paddingHorizontal: 20, marginBottom: 20 }}>
+        <H2 text='Eventos próximos' />
+        <EventsContainer />
       </View>
     </ScrollView>
   );
 }
-type CardImageProps = {
-  id: number;
-  image: string;
-  shortDescription: string;
-};
 
-function CardImage({ id, image, shortDescription }: CardImageProps) {
-  //
-  const navigation = useNavigation();
-
+function ArticlesCarousel() {
+  const [articlesCarrouselIndex, setArticlesCarrouselIndex] = useState(0);
   return (
-    <TouchableOpacity
-      activeOpacity={0.6}
-      // @ts-ignore
-      onPress={() => navigation.navigate('HeaderArticle', { id })}
-    >
-      <View>
-        <Image
-          source={{
-            uri: image,
-          }}
-          style={{
-            width: '100%',
-            height: 160,
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
-          }}
-        />
-        <View
-          style={{
-            ...generalStyles.generalBody,
-            marginBottom: 20,
-            paddingVertical: 15,
-          }}
-        >
-          <Text style={{ fontWeight: 'bold' }}>{shortDescription}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+    <>
+      <Carousel
+        data={headersHome}
+        renderItem={({ item }) => <HeaderImage item={item} />}
+        sliderWidth={width}
+        itemWidth={width - 40}
+        onSnapToItem={(index) => setArticlesCarrouselIndex(index)}
+      />
+      <Pagination
+        dotsLength={headersHome.length}
+        activeDotIndex={articlesCarrouselIndex}
+        dotColor={darkGray}
+      />
+    </>
+  );
+}
+
+function EventsContainer() {
+  const { isLoading, isFetching, data } = useGetTalleres();
+  return (
+    <View
+      style={{
+        width: '100%',
+      }}
+    ></View>
+  );
+}
+
+function EventItem() {
+  return (
+    <View
+      style={{
+        paddingVertical: 15,
+        borderRadius: 5,
+        backgroundColor: lightGray,
+        marginBottom: 20,
+      }}
+    ></View>
   );
 }

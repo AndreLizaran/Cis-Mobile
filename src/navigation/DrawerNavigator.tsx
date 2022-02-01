@@ -5,6 +5,7 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
+import { Ionicons } from '@expo/vector-icons';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 
@@ -17,6 +18,7 @@ import PersonalEvents from '../screens/PersonalEvents';
 // Colors
 import { darkGray, normalGreen } from '../utils/colors';
 import HeaderArticle from '../screens/HeaderArticle';
+import Settings from '../screens/Settings';
 
 export type DrawerStackParams = {
   Home: undefined;
@@ -37,7 +39,7 @@ export default function DrawerNavigator() {
       drawerContent={(props) => <DrawerContent {...props} />}
     >
       <Drawer.Screen name='Home' options={{ title: 'Inicio' }} component={Home} />
-      <Drawer.Screen name='Dates' options={{ title: 'Fechas' }} component={Dates} />
+      <Drawer.Screen name='Dates' options={{ title: 'Eventos' }} component={Dates} />
       <Drawer.Screen name='User' options={{ title: 'Usuario' }} component={User} />
       <Drawer.Screen
         name='PersonalEvents'
@@ -49,6 +51,12 @@ export default function DrawerNavigator() {
         options={{ title: 'Artículo' }}
         component={HeaderArticle}
       />
+      <Drawer.Screen
+        // @ts-ignore
+        name='Settings'
+        options={{ title: 'Configuraciones' }}
+        component={Settings}
+      />
     </Drawer.Navigator>
   );
 }
@@ -57,6 +65,16 @@ function DrawerContent({ navigation, state }: DrawerContentComponentProps) {
   const { index } = state;
   return (
     <DrawerContentScrollView>
+      <DrawerImage />
+      <DrawerList navigation={navigation} index={index} />
+      <DrawerSettingsButton navigation={navigation} />
+    </DrawerContentScrollView>
+  );
+}
+
+function DrawerImage() {
+  return (
+    <View>
       <Image
         source={{
           uri: 'https://images.unsplash.com/photo-1474314170901-f351b68f544f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
@@ -70,8 +88,7 @@ function DrawerContent({ navigation, state }: DrawerContentComponentProps) {
         <Text style={{ color: 'white' }}>André Lizarán</Text>
         <Text style={{ color: 'white', fontWeight: 'bold' }}>8vo semestre</Text>
       </View>
-      <DrawerList navigation={navigation} index={index} />
-    </DrawerContentScrollView>
+    </View>
   );
 }
 
@@ -140,3 +157,20 @@ const routes = [
     route: 'PersonalEvents',
   },
 ];
+
+type DrawerSettingsButtonProps = {
+  navigation: DrawerNavigationHelpers;
+};
+
+function DrawerSettingsButton({ navigation }: DrawerSettingsButtonProps) {
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <Ionicons
+        name='ios-settings'
+        size={30}
+        color='white'
+        style={{ padding: 20, bottom: -60 }}
+      />
+    </TouchableOpacity>
+  );
+}

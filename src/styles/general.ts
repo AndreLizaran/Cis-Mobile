@@ -2,7 +2,7 @@
 import { StyleSheet } from 'react-native';
 
 // Colors
-import { normalGray } from '../utils/colors';
+import { lightGray } from '../utils/colors';
 
 const generalStyles = StyleSheet.create({
   container: {
@@ -41,7 +41,7 @@ const generalStyles = StyleSheet.create({
   },
   generalBody: {
     padding: 20,
-    backgroundColor: normalGray,
+    backgroundColor: lightGray,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },

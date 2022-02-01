@@ -1,8 +1,4 @@
 // Modules
-import React, { useEffect, useRef } from 'react';
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
 import {
   ActivityIndicator,
   Alert,
@@ -13,6 +9,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import React, { useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 // Hooks
 import useAnimation from '../hooks/useAnimation';
@@ -31,9 +31,9 @@ import {
 } from '../hooks/useGetDates';
 
 // Types
+import { Props } from './Login';
 import { DateType } from '../endpoints/general';
 import SimpleButton from '../components/SimpleButton';
-import { Props } from './Login';
 
 export default function Dates({ navigation }: Props) {
   //
@@ -41,56 +41,55 @@ export default function Dates({ navigation }: Props) {
     isLoading: isLoadingTalleres,
     isFetching: isFetchingTalleres,
     data: dataTalleres,
-    isSuccess: isSuccessTalleres,
   } = useGetTalleres();
 
   const {
     isLoading: isLoadingConferencias,
     isFetching: isFetchingConferencias,
     data: dataConferencias,
-    isSuccess: isSuccessConferencias,
   } = useGetConferencias();
 
   const {
     isLoading: isLoadingCursos,
     isFetching: isFetchingCursos,
     data: dataCursos,
-    isSuccess: isSuccessCursos,
   } = useGetCursos();
 
   return (
     <>
-      <ScrollView style={{ ...generalStyles.container, marginBottom: 20 }}>
-        <TouchableOpacity
-          style={{ marginBottom: 20 }}
-          onPress={() => navigation.navigate('PersonalEvents')}
-        >
-          <SimpleButton text='Ver tus eventos' bgColor={darkGray} />
-        </TouchableOpacity>
-        <DatesContainer
-          headerColor={normalRed}
-          title='Talleres'
-          icon='pencil-sharp'
-          isLoading={isLoadingTalleres}
-          isFetching={isFetchingTalleres}
-          data={dataTalleres?.data.talleres}
-        />
-        <DatesContainer
-          headerColor={normalBlue}
-          title='Conferencias'
-          icon='megaphone'
-          isLoading={isLoadingConferencias}
-          isFetching={isFetchingConferencias}
-          data={dataConferencias?.data.conferencias}
-        />
-        <DatesContainer
-          headerColor={normalGreen}
-          title='Cursos'
-          icon='people-circle'
-          isLoading={isLoadingCursos}
-          isFetching={isFetchingCursos}
-          data={dataCursos?.data.cursos}
-        />
+      <ScrollView style={{ ...generalStyles.container }}>
+        <View style={{ marginBottom: 20 }}>
+          <TouchableOpacity
+            style={{ marginBottom: 20 }}
+            onPress={() => navigation.navigate('PersonalEvents')}
+          >
+            <SimpleButton text='Ver tus eventos' bgColor={darkGray} />
+          </TouchableOpacity>
+          <DatesContainer
+            headerColor={normalRed}
+            title='Talleres'
+            icon='pencil-sharp'
+            isLoading={isLoadingTalleres}
+            isFetching={isFetchingTalleres}
+            data={dataTalleres?.data.talleres}
+          />
+          <DatesContainer
+            headerColor={normalBlue}
+            title='Conferencias'
+            icon='megaphone'
+            isLoading={isLoadingConferencias}
+            isFetching={isFetchingConferencias}
+            data={dataConferencias?.data.conferencias}
+          />
+          <DatesContainer
+            headerColor={normalGreen}
+            title='Cursos'
+            icon='people-circle'
+            isLoading={isLoadingCursos}
+            isFetching={isFetchingCursos}
+            data={dataCursos?.data.cursos}
+          />
+        </View>
       </ScrollView>
     </>
   );
@@ -209,7 +208,7 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
 
   return (
     <Animated.ScrollView
-      style={{ maxHeight: 300, opacity }}
+      style={{ maxHeight: 350, opacity }}
       nestedScrollEnabled={true}
     >
       {data.map(

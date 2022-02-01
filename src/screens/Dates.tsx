@@ -194,11 +194,7 @@ type ListDatesInformationProps = {
 
 export function ListDatesInformation({ data, color }: ListDatesInformationProps) {
   //
-  const opacity = useRef(new Animated.Value(0.4)).current;
-
-  const {} = data;
-
-  const { fadeIn } = useAnimation(opacity);
+  const { fadeIn, opacity } = useAnimation();
 
   function signUpEvent(day: string, hour: string, rep: string) {
     Alert.alert(

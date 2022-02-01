@@ -87,7 +87,7 @@ export function EventsContainer() {
         }}
       >
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
-          Eventos enlistados
+          Eventos personales
         </Text>
         <FontAwesome5 name='calendar-alt' size={24} color='white' />
       </View>

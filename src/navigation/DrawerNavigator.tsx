@@ -12,14 +12,23 @@ import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript
 import User, { FirstLetterBox } from '../screens/User';
 import Home from '../screens/Home';
 import Dates from '../screens/Dates';
-
-// Colors
-import { normalGreen } from '../utils/colors';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import PersonalEvents from '../screens/PersonalEvents';
 
-const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator();
+// Colors
+import { darkGray, normalGreen } from '../utils/colors';
+import HeaderArticle from '../screens/HeaderArticle';
+
+export type DrawerStackParams = {
+  Home: undefined;
+  Dates: undefined;
+  User: undefined;
+  PersonalEvents: undefined;
+  HeaderArticle: {
+    id: string;
+  };
+};
+
+const Drawer = createDrawerNavigator<DrawerStackParams>();
 
 export default function DrawerNavigator() {
   return (
@@ -27,13 +36,18 @@ export default function DrawerNavigator() {
       screenOptions={{ headerTintColor: 'white', drawerHideStatusBarOnOpen: false }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
-      <Drawer.Screen name='home' options={{ title: 'Inicio' }} component={Home} />
-      <Drawer.Screen name='dates' options={{ title: 'Fechas' }} component={Dates} />
-      <Drawer.Screen name='user' options={{ title: 'Usuario' }} component={User} />
+      <Drawer.Screen name='Home' options={{ title: 'Inicio' }} component={Home} />
+      <Drawer.Screen name='Dates' options={{ title: 'Fechas' }} component={Dates} />
+      <Drawer.Screen name='User' options={{ title: 'Usuario' }} component={User} />
       <Drawer.Screen
-        name='personal-events'
+        name='PersonalEvents'
         options={{ title: 'Eventos personales' }}
         component={PersonalEvents}
+      />
+      <Drawer.Screen
+        name='HeaderArticle'
+        options={{ title: 'Artículo' }}
+        component={HeaderArticle}
       />
     </Drawer.Navigator>
   );
@@ -92,7 +106,7 @@ function DrawerItem({ name, active, navigation, route }: DrawerItemProps) {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: active ? '#698c69' : normalGreen,
+        backgroundColor: active ? '#383838' : darkGray,
         borderRadius: 5,
         padding: 15,
         marginBottom: 10,
@@ -108,21 +122,21 @@ const routes = [
   {
     id: 0,
     name: 'Inicio',
-    route: 'home',
+    route: 'Home',
   },
   {
     id: 1,
     name: 'Eventos',
-    route: 'dates',
+    route: 'Dates',
   },
   {
     id: 2,
     name: 'Usuario',
-    route: 'user',
+    route: 'User',
   },
   {
     id: 3,
     name: 'Eventos personales',
-    route: 'personal-events',
+    route: 'PersonalEvents',
   },
 ];

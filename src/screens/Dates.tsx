@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import {
   ActivityIndicator,
+  Alert,
   Animated,
   Image,
   ScrollView,
@@ -62,7 +63,7 @@ export default function Dates({ navigation }: Props) {
       <ScrollView style={{ ...generalStyles.container, marginBottom: 20 }}>
         <TouchableOpacity
           style={{ marginBottom: 20 }}
-          onPress={() => navigation.navigate('personal-events')}
+          onPress={() => navigation.navigate('PersonalEvents')}
         >
           <SimpleButton text='Ver tus eventos' bgColor={darkGray} />
         </TouchableOpacity>
@@ -195,7 +196,16 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
   //
   const opacity = useRef(new Animated.Value(0.4)).current;
 
+  const {} = data;
+
   const { fadeIn } = useAnimation(opacity);
+
+  function signUpEvent(day: string, hour: string, rep: string) {
+    Alert.alert(
+      'Quieres registrarte a este evento?',
+      `Estás seguro de registrarte al evento organizado por ${rep}, el día ${day} a las ${hour}`
+    );
+  }
 
   useEffect(() => {
     fadeIn();
@@ -203,7 +213,7 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
 
   return (
     <Animated.ScrollView
-      style={{ maxHeight: 200, opacity }}
+      style={{ maxHeight: 300, opacity }}
       nestedScrollEnabled={true}
     >
       {data.map(
@@ -335,6 +345,7 @@ export function ListDatesInformation({ data, color }: ListDatesInformationProps)
                   backgroundColor: color,
                   marginTop: 10,
                 }}
+                onPress={() => signUpEvent(day, hour, responsableName)}
               >
                 <Text style={{ fontWeight: 'bold', color: 'white' }}>
                   Registrarse

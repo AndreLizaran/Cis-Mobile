@@ -7,7 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import generalStyles from '../styles/general';
 
 // Colors
-import { darkGray, normalBlue, normalGray } from '../utils/colors';
+import { darkGray, normalBlue } from '../utils/colors';
 
 // Components
 import SimpleButton from '../components/SimpleButton';

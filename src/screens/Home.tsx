@@ -6,10 +6,10 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import { useNavigation } from '@react-navigation/native';
 
 // Data
 import { headersHome } from '../dummyData';
@@ -29,6 +29,7 @@ export default function Home() {
         data={headersHome}
         renderItem={(data) => (
           <CardImage
+            id={data.item.id}
             image={data.item.image}
             shortDescription={data.item.shortDescription}
           />
@@ -100,13 +101,21 @@ export default function Home() {
   );
 }
 type CardImageProps = {
+  id: number;
   image: string;
   shortDescription: string;
 };
 
-function CardImage({ image, shortDescription }: CardImageProps) {
+function CardImage({ id, image, shortDescription }: CardImageProps) {
+  //
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.6}
+      // @ts-ignore
+      onPress={() => navigation.navigate('HeaderArticle', { id })}
+    >
       <View>
         <Image
           source={{
